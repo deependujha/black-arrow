@@ -7,8 +7,9 @@ Read it at <https://deependujha.github.io/black-arrow/>.
 ## Writing
 
 ```sh
-cargo install mdbook --version 0.5.4   # or: brew install mdbook
-mdbook serve --open                    # live preview at localhost:3000
+cargo install mdbook --version 0.5.4
+cargo install mdbook-pagetoc --version 0.3.0   # per-page table of contents on the right
+mdbook serve --open                            # live preview at localhost:3000
 ```
 
 Add a page by listing it in `src/SUMMARY.md`; `mdbook serve` creates the missing file.
