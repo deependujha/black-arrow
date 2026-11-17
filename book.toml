@@ -1,0 +1,17 @@
+[book]
+title = "Black Arrow"
+description = "To-the-point notes and reference on ML performance engineering"
+authors = ["deependujha"]
+language = "en"
+src = "src"
+
+[build]
+create-missing = true
+
+[output.html]
+site-url = "/black-arrow/"
+git-repository-url = "https://github.com/deependujha/black-arrow"
+edit-url-template = "https://github.com/deependujha/black-arrow/edit/main/{path}"
+
+[output.html.search]
+enable = true
