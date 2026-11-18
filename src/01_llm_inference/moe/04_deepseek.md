@@ -200,7 +200,7 @@ DeepSeek reported both better model quality *and* better load balance than with 
 
 ### Fewer active parameters, same quality
 
-From the DeepSeekMoE paper, all models with about 2B total parameters:
+From the DeepSeekMoE paper, at the 2B-parameter scale (GShard ×1.5 is deliberately 1.5× larger):
 
 | Model | Experts | Active experts | Expert params | Active expert params |
 |---|---|---|---|---|

@@ -121,6 +121,8 @@ f2 = 1/4 = 0.25
 f3 = 1/4 = 0.25            (sums to 1)
 ```
 
+> **Note:** this is the Switch Transformer's definition, and Switch sends each token to a single expert (top-1). With top-k routing, as in the running example and in DeepSeekMoE, count every (token, expert) assignment instead. The example has 8 assignments (4 tokens × 2 experts), split 2, 2, 4, so `f = (0.25, 0.25, 0.50)`. That version shows `E3` as the busiest expert and gives `Σ f·P = 0.35`, so `L_balance = 0.0105`.
+
 ### The loss
 
 ```text
@@ -176,7 +178,7 @@ tokens per batch = batch size × sequence length × top_k
 ```
 
 - **Expert capacity** is the maximum number of tokens one expert may process in a batch.
-- `top_k` is in the token count because each token is sent to `k` experts, so it occupies `k` slots.
+- `top_k` is in the token count because each token is sent to `k` experts, so it occupies `k` slots. Switch itself routes top-1, so its formula has no `top_k`. The factor generalises it to top-k routing.
 
 Example: 1000 tokens per batch, 4 experts.
 
@@ -189,13 +191,13 @@ Example: 1000 tokens per batch, 4 experts.
 
 - Tokens beyond an expert's capacity are **dropped**: that expert does not process them. The token still moves on through the residual connection.
 - Typical values are between 1 and 2. Higher wastes memory and lets one expert dominate again. Lower drops more tokens.
-- With a cap of 2 tokens in the 4-token example, no expert could ever take all four.
+- The 4-token example has 8 slots over 3 experts, a fair share of 2.67 each. With a cap of 3, no expert could take all four tokens the way `E3` does.
 
 Dropping tokens loses information, so it is a last resort. DeepSeek-V3 states that it drops no tokens, in training or inference.
 
 ## What MoE buys once balanced
 
-With 32 to 128 experts, the Switch Transformer reached the quality of its dense baseline up to about 7× faster in training time. Fewer active parameters per forward pass means fewer operations per step and room for a much larger model at similar cost.
+With 32 to 128 experts, the Switch Transformer reached the quality of its dense baseline up to about 7× faster in training time, at the **same compute per token**. Each token still runs one FFN-sized expert, so a step costs about the same. The gain comes from the extra parameters: the model is much larger, but only a small part of it runs for any one token.
 
 ## The catch
 

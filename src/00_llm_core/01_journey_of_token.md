@@ -146,7 +146,7 @@ The dog chased another dog
      same token, same embedding, but two different dogs
 ```
 
-Attention (in Part 2) treats its input as an unordered set, so without extra information `dog bites man` and `man bites dog` would look identical. The model needs to know **where** each token sits.
+Attention (in Part 2) has no built-in notion of order: it treats its input as a set of vectors. Without extra information, `dog bites man` and `man bites dog` would be the same three vectors. The model needs to know **where** each token sits.
 
 GPT-2 fixes this with a second learned table `W_pe` of shape `n_ctx × d` (`1024 × 768`): one row per position.
 
@@ -261,7 +261,7 @@ Two details matter for the rest of this page:
 - **Multi-head.** GPT-2 small runs 12 attention heads in parallel, each with `768 / 12 = 64` dimensions. Each head can track a different kind of relationship (the adjective of a noun, the subject of a verb, and so on). Their outputs are concatenated back to 768 and passed through a linear layer.
 - **Causal mask.** A token may only attend to itself and the tokens **before** it. `friend` sees `A`, `true`, `friend`. It never sees `accepts` or `you`. This is what makes the model a left-to-right predictor, and it is why [training](#training) can use every position at once.
 
-Attention is where DeepSeek's **multi-head latent attention (MLA)** changes the architecture. Self-attention, multi-head attention, and the KV cache each get their own page.
+Attention is where DeepSeek's **multi-head latent attention (MLA)** changes the architecture. The full mechanism is covered in [Attention](./attention/intro.md).
 
 ### Dropout
 
@@ -271,7 +271,7 @@ During training, dropout sets a random fraction of values to zero (10% in GPT-2)
 - That reduces overfitting and improves generalization.
 - It is **switched off at inference**, so it does nothing when you use the model.
 
-GPT-2 uses dropout in three places: on the input embedding, and after each of the two sub-layers. Most modern LLMs drop it entirely, since their training data is too large to overfit.
+GPT-2 uses dropout in four places: on the input embedding, on the attention weights inside each attention layer, and after each of the two sub-layers. Most modern LLMs drop it entirely, since their training data is too large to overfit.
 
 ### Skip connections
 

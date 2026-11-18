@@ -44,7 +44,8 @@ Pages 2 to 4 reuse the same toy setup, so the numbers carry over:
 |---|---|---|
 | 1991 | [Adaptive Mixtures of Local Experts](https://www.cs.toronto.edu/~fritz/absps/jjnh91.pdf) (Jacobs, Jordan, Nowlan, Hinton) | The idea: several small networks plus a gating network that picks among them |
 | 2017 | [Sparsely-Gated MoE](https://arxiv.org/abs/1701.06538) (Shazeer et al.) | Noisy top-k gating, importance loss |
-| 2021 | [Switch Transformer](https://arxiv.org/abs/2101.03961) | MoE inside the transformer FFN, load balancing loss, capacity factor |
+| 2020 | [GShard](https://arxiv.org/abs/2006.16668) (Lepikhin et al.) | MoE inside the transformer FFN at scale, top-2 routing, expert capacity |
+| 2021 | [Switch Transformer](https://arxiv.org/abs/2101.03961) | Simplifies routing to top-1, load balancing loss, capacity factor |
 | 2022 | [ST-MoE](https://arxiv.org/abs/2202.08906) | Stable training, evidence of what experts specialise in |
 | 2024 Jan | [DeepSeekMoE](https://arxiv.org/abs/2401.06066) | Fine-grained experts, shared experts |
 | 2024 May | [DeepSeek-V2](https://arxiv.org/abs/2405.04434) | Uses the DeepSeekMoE architecture |

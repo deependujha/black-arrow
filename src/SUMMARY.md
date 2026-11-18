@@ -4,6 +4,11 @@
 
 - [LLM Core](./00_llm_core/intro.md)
    - [Journey of token](./00_llm_core/01_journey_of_token.md)
+   - [Attention](./00_llm_core/attention/intro.md)
+      - [Why attention](./00_llm_core/attention/01_why_attention.md)
+      - [Self-attention](./00_llm_core/attention/02_self_attention.md)
+      - [Causal attention](./00_llm_core/attention/03_causal_attention.md)
+      - [Multi-head attention](./00_llm_core/attention/04_multi_head_attention.md)
 - [LLM Inference](./01_llm_inference/intro.md)
    - [Terminologies](./01_llm_inference/01_terminologies.md)
    - [Mixture of Experts](./01_llm_inference/moe/intro.md)

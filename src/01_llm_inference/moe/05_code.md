@@ -131,6 +131,8 @@ class NoisyTopkRouter(nn.Module):
         return F.softmax(sparse_logits, dim=-1), indices
 ```
 
+> **Note:** the noise is added on every call, including after `model.eval()`, so routing is slightly random at inference too. This follows makeMoE. In the 2017 paper the noise is a training-time device. Wrap the two noise lines in `if self.training:` to make inference deterministic.
+
 ## The sparse MoE layer
 
 The explanation so far went token by token: find the token's experts, weight their outputs, add. Code does the same sum the other way round, **expert by expert**:
@@ -263,7 +265,7 @@ def load_balancing_loss(probs, indices, lam=0.01):
     return lam * n * (f * P).sum()
 ```
 
-On the worked example these return `0.035 × λ` and `0.0101`, matching the hand calculation. Add either to the cross-entropy loss before `backward()`.
+On the worked example these return `0.035 × λ` and `0.0101`, matching the hand calculation. The second value assumes the tie in the `is` row is broken towards `E1`, as it was by hand. `indices[..., 0]` is each token's top expert, which is the top-1 definition of `f`. Add either to the cross-entropy loss before `backward()`.
 
 `unbiased=False` gives the population standard deviation used in the worked example.
 
