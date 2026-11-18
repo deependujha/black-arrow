@@ -20,3 +20,8 @@ edit-url-template = "https://github.com/deependujha/black-arrow/edit/main/{path}
 
 [output.html.search]
 enable = true
+
+[output.html.fold]
+enable = true
+level = 0
+
