@@ -3,7 +3,7 @@
 [Introduction](./intro.md)
 
 - [LLM Core](./00_llm_core/intro.md)
-   - [Journey of token](./00_llm_core/journey_of_token.md)
+   - [Journey of token](./00_llm_core/01_journey_of_token.md)
 - [LLM Inference](./01_llm_inference/intro.md)
    - [Terminologies](./01_llm_inference/01_terminologies.md)
    - [Mixture of Experts](./01_llm_inference/moe/intro.md)

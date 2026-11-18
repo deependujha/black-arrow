@@ -11,6 +11,7 @@ create-missing = false
 [preprocessor.pagetoc]
 
 [output.html]
+mathjax-support = true
 sidebar-header-nav = false
 additional-css = ["theme/pagetoc.css"]
 additional-js = ["theme/pagetoc.js"]
