@@ -324,5 +324,5 @@ The same happens in other trained transformers. Below, two heads process the wor
 
 Multi-head attention is the attention used in every GPT model. Its cost shows up at inference: generating each new token needs the keys and values of all earlier tokens, in every head of every layer.
 
-- The **KV cache** stores them so they are computed only once. It trades memory for speed, and that memory becomes the bottleneck for long contexts.
+- The [**KV cache**](../../01_llm_inference/02_kv_cache.md) stores them so they are computed only once. It trades memory for speed, and that memory becomes the bottleneck for long contexts.
 - **Multi-head latent attention (MLA)**, DeepSeek's change to this layer, compresses what is cached so the KV cache takes far less memory.

@@ -13,7 +13,7 @@ The single forward pass over the whole prompt.
 - **Input:** all `n` prompt tokens at once.
 - **Work:** every token is processed in parallel, so it is one big batch of matrix multiplies. Attention cost grows as `O(n²)`.
 - **Output:**
-  - the **KV cache**: the attention keys and values of every prompt token, at every layer
+  - the [**KV cache**](./02_kv_cache.md): the attention keys and values of every prompt token, at every layer
   - the logits at the last position, from which the first output token is sampled
 - **Bottleneck:** compute. The GPU is saturated, so prefill is fast per token but its total time grows with prompt length.
 - **Decides:** [TTFT](#ttft).

@@ -11,6 +11,7 @@
       - [Multi-head attention](./00_llm_core/attention/04_multi_head_attention.md)
 - [LLM Inference](./01_llm_inference/intro.md)
    - [Terminologies](./01_llm_inference/01_terminologies.md)
+   - [KV cache](./01_llm_inference/02_kv_cache.md)
    - [Mixture of Experts](./01_llm_inference/moe/intro.md)
       - [Intuition](./01_llm_inference/moe/01_intuition.md)
       - [Forward pass](./01_llm_inference/moe/02_forward_pass.md)

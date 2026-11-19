@@ -402,7 +402,7 @@ A true friend accepts you as a friend
 A true friend accepts you as a friend.
 ```
 
-Rerunning the whole sequence for every new token would repeat almost all the work, since the old tokens have not changed. The **KV cache** removes that waste by saving each token's attention keys and values. That is what splits inference into [prefill and decode](../01_llm_inference/01_terminologies.md).
+Rerunning the whole sequence for every new token would repeat almost all the work, since the old tokens have not changed. The [**KV cache**](../01_llm_inference/02_kv_cache.md) removes that waste by saving each token's attention keys and values. That is what splits inference into [prefill and decode](../01_llm_inference/01_terminologies.md).
 
 ## Training
 

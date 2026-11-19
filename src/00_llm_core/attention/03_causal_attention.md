@@ -245,7 +245,7 @@ attn(batch).shape                   # torch.Size([2, 6, 2])
 ## What the mask makes possible
 
 - **Training on every position at once.** One sequence of `n` tokens gives `n` valid predictions in a single forward pass. That is a big part of why transformers train efficiently.
-- **The KV cache.** A token's keys and values depend only on earlier tokens, so they never change when new tokens are appended. During generation they can be computed once and reused. This is what splits inference into [prefill and decode](../../01_llm_inference/01_terminologies.md).
+- **The [KV cache](../../01_llm_inference/02_kv_cache.md).** A token's keys and values depend only on earlier tokens, so they never change when new tokens are appended. During generation they can be computed once and reused. This is what splits inference into [prefill and decode](../../01_llm_inference/01_terminologies.md).
 - **Not every transformer is causal.** Encoder models such as BERT use unmasked attention, because their job is to understand a complete text, not to generate one. Every GPT-style LLM is causal.
 
 One attention pattern per layer is still limiting: a sentence has many relationships at once. [Multi-head attention](./04_multi_head_attention.md) runs several patterns in parallel.
